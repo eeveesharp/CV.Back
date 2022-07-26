@@ -12,13 +12,14 @@ namespace CV.DAL.Entities
         public int Id { get; set; }
 
         public int EmployeeId { get; set; }
-
+#nullable disable
         public List<EmployeeEntity> Employee { get; set; }
 
         public int ProjectId { get; set; }
 
         public List<ProjectEntity> Project { get; set; }
 
-        public string? Position { get; set; }
+        public string Position { get; set; }
+#nullable enable
     }
 }
