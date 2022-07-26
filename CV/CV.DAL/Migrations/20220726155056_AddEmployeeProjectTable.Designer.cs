@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220721103506_AddForeignLanguage")]
-    partial class AddForeignLanguage
+    [Migration("20220726155056_AddEmployeeProjectTable")]
+    partial class AddEmployeeProjectTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace CV.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("EmployeeProjectEntityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -43,10 +46,34 @@ namespace CV.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeProjectEntityId");
+
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("CV.DAL.Entities.ForeignLanguageEntity", b =>
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmployeeProjects");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.ForeignLanguage.ForeignLanguageEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,6 +89,48 @@ namespace CV.DAL.Migrations
                     b.ToTable("ForeignLanguages");
                 });
 
+            modelBuilder.Entity("CV.DAL.Entities.ForeignLanguage.LanguageEverydayTopicEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LanguageEverydayTopics");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.ForeignLanguage.LanguageLevelEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LanguageLevels");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.ForeignLanguage.LanguageProfessionalTopicEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LanguageProfessionalTopics");
+                });
+
             modelBuilder.Entity("CV.DAL.Entities.ProjectEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -72,6 +141,9 @@ namespace CV.DAL.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EmployeeProjectEntityId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("EndProject")
                         .HasColumnType("datetime2");
@@ -87,10 +159,12 @@ namespace CV.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeProjectEntityId");
+
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("CV.DAL.Entities.SkillEntity", b =>
+            modelBuilder.Entity("CV.DAL.Entities.Skill.SkillEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,7 +186,7 @@ namespace CV.DAL.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("CV.DAL.Entities.SkillGroupEntity", b =>
+            modelBuilder.Entity("CV.DAL.Entities.Skill.SkillGroupEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,7 +202,7 @@ namespace CV.DAL.Migrations
                     b.ToTable("SkillGroups");
                 });
 
-            modelBuilder.Entity("CV.DAL.Entities.SkillLevelEntity", b =>
+            modelBuilder.Entity("CV.DAL.Entities.Skill.SkillLevelEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,6 +216,27 @@ namespace CV.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SkillLevels");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeEntity", b =>
+                {
+                    b.HasOne("CV.DAL.Entities.EmployeeProjectEntity", null)
+                        .WithMany("Employee")
+                        .HasForeignKey("EmployeeProjectEntityId");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.ProjectEntity", b =>
+                {
+                    b.HasOne("CV.DAL.Entities.EmployeeProjectEntity", null)
+                        .WithMany("Project")
+                        .HasForeignKey("EmployeeProjectEntityId");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeProjectEntity", b =>
+                {
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
                 });
 #pragma warning restore 612, 618
         }

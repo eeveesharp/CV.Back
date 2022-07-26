@@ -7,16 +7,18 @@ using CV.DAL.Infraestructure;
 
 namespace CV.DAL.Entities
 {
-    public class EmployeeProjectEntity : HasId
+    public class EmployeeProjectEntity 
     {
+        public int Id { get; set; }
+
         public int EmployeeId { get; set; }
+
+        public List<EmployeeEntity> Employee { get; set; }
 
         public int ProjectId { get; set; }
 
-#nullable disable
-        public List<EmployeeEntity> EmployeeList { get; set; }
+        public List<ProjectEntity> Project { get; set; }
 
-        public ProjectEntity Project { get; set; }
-#nullable enable
+        public string? Position { get; set; }
     }
 }

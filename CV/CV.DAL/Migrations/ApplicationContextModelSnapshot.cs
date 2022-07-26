@@ -30,6 +30,9 @@ namespace CV.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("EmployeeProjectEntityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -41,7 +44,31 @@ namespace CV.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeProjectEntityId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmployeeProjects");
                 });
 
             modelBuilder.Entity("CV.DAL.Entities.ForeignLanguage.ForeignLanguageEntity", b =>
@@ -113,6 +140,9 @@ namespace CV.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EmployeeProjectEntityId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("EndProject")
                         .HasColumnType("datetime2");
 
@@ -126,6 +156,8 @@ namespace CV.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeProjectEntityId");
 
                     b.ToTable("Projects");
                 });
@@ -182,6 +214,27 @@ namespace CV.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SkillLevels");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeEntity", b =>
+                {
+                    b.HasOne("CV.DAL.Entities.EmployeeProjectEntity", null)
+                        .WithMany("Employee")
+                        .HasForeignKey("EmployeeProjectEntityId");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.ProjectEntity", b =>
+                {
+                    b.HasOne("CV.DAL.Entities.EmployeeProjectEntity", null)
+                        .WithMany("Project")
+                        .HasForeignKey("EmployeeProjectEntityId");
+                });
+
+            modelBuilder.Entity("CV.DAL.Entities.EmployeeProjectEntity", b =>
+                {
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
                 });
 #pragma warning restore 612, 618
         }
