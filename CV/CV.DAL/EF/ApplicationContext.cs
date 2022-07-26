@@ -16,6 +16,7 @@ namespace CV.DAL.EF
         public DbSet<LanguageEverydayTopicEntity> LanguageEverydayTopics { get; set; } = null!;
         public DbSet<LanguageProfessionalTopicEntity> LanguageProfessionalTopics { get; set; } = null!;
         public DbSet<LanguageLevelEntity> LanguageLevels { get; set; } = null!;
+        public DbSet<EmployeeProjectEntity> EmployeeProjects { get; set; } = null!;
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
