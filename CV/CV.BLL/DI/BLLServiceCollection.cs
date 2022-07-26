@@ -11,14 +11,20 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddBllServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IEmployeeServices, EmployeeServices>();
+
             services.AddScoped<IProjectServices, ProjectServices>();
+
             services.AddScoped<ISkillServices, SkillServices>();
             services.AddScoped<ISkillGroupServices, SkillGroupServices>();
             services.AddScoped<ISkillLevelServices, SkillLevelServices>();
+
             services.AddScoped<IForeignLanguageServices, ForeignLanguageServices>();
             services.AddScoped<ILanguageEverydayTopicServices, LanguageEverydayTopicServices>();
             services.AddScoped<ILanguageLevelServices, LanguageLevelServices>();
             services.AddScoped<ILanguageEverydayTopicServices, LanguageEverydayTopicServices>();
+
+            services.AddScoped<IEmployeeProjectServices, EmployeeProjectServices>();
+
             services.AddDalServices(configuration);
         }
     }
