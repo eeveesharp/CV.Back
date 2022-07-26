@@ -27,6 +27,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGenericRepository<LanguageEverydayTopicEntity>, LanguageEverydayTopicRepository>();
             services.AddScoped<IGenericRepository<LanguageLevelEntity>, LanguageLevelRepository>();
 
+            services.AddScoped<IGenericRepository<EmployeeProjectEntity>, EmployeeProjectRepository>();
+
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
