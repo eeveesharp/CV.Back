@@ -33,9 +33,9 @@ jobs:
     - name: sonarscan-dotnet
       uses: highbyte/sonarscan-dotnet@v2.1.2
       with:
-        sonarProjectKey: Blackolf931_CV.Back
+        sonarProjectKey: eeveesharp_CV.Back
         sonarProjectName: CV
-        sonarOrganization: blackolf931-tsp
+        sonarOrganization: eeveesharp
         dotnetBuildArguments: --configuration Release CV/CV.sln
         dotnetTestArguments: --no-build --configuration Release --verbosity normal CV/CV.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
         sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" /d:sonar.coverage.exclusions="$SONAR_EXCLUSION"
