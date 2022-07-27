@@ -10,7 +10,7 @@ namespace CV.API.Controllers.Skills
     [ApiController]
     public class SkillController : GenericController<SkillViewModel, ShortSkillViewModel, AddSkillViewModel, SkillModel, UpdateSkillViewModel>
     {
-        public SkillController(IGenericServices<SkillModel> genericService, IMapper mapper) : base(genericService, mapper)
+        public SkillController(ISkillServices skillServices, IMapper mapper) : base(skillServices, mapper)
         {
         }
     }

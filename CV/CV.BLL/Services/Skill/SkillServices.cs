@@ -4,7 +4,7 @@ using CV.BLL.Models.Skill;
 using CV.DAL.Entities.Skill;
 using CV.DAL.Interfaces;
 
-namespace CV.BLL.Services
+namespace CV.BLL.Services.Skill
 {
     public class SkillServices : GenericServices<SkillModel, SkillEntity>, ISkillServices
     {
