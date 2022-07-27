@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CV.API.Controllers.Skills
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SkillLevelController : GenericController<SkillLevelViewModel, ShortSkillLevelViewModel, AddSkillLevelViewModel, SkillLevelModel, UpdateSkillLevelViewModel>
     {
