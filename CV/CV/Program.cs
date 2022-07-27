@@ -1,4 +1,6 @@
+using System.Reflection;
 using CV.API.Middlewares;
+using FluentValidation.AspNetCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddBllServices(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(CV.BLL.Mappers.MappingProfile), typeof(CV.API.Mappers.Mapper));
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssembly(Assembly.Load("CV.Api")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
