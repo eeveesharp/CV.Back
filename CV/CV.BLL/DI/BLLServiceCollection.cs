@@ -2,6 +2,7 @@
 using CV.BLL.Interfaces.ForeignLanguage;
 using CV.BLL.Services;
 using CV.BLL.Services.ForeignLanguage;
+using CV.BLL.Services.Skill;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection

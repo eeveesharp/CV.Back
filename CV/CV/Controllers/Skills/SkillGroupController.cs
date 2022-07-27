@@ -10,7 +10,7 @@ namespace CV.API.Controllers.Skills
     [ApiController]
     public class SkillGroupController : GenericController<SkillGroupViewModel, ShortSkillGroupViewModel, AddSkillGroupViewModel, SkillGroupModel, UpdateSkillGroupViewModel>
     {
-        public SkillGroupController(IGenericServices<SkillGroupModel> genericService, IMapper mapper) : base(genericService, mapper)
+        public SkillGroupController(ISkillGroupServices skillGroupServices, IMapper mapper) : base(skillGroupServices, mapper)
         {
         }
     }

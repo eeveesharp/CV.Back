@@ -1,10 +1,16 @@
 ﻿using AutoMapper;
 using CV.API.ViewModel.Employee;
+using CV.API.ViewModel.EmployeeProject;
+using CV.API.ViewModel.ForeignLanguages.ForeignLanguage;
+using CV.API.ViewModel.ForeignLanguages.LanguageEveryDayTopic;
+using CV.API.ViewModel.ForeignLanguages.LanguageLevel;
+using CV.API.ViewModel.ForeignLanguages.LanguageProfessionalTopic;
 using CV.API.ViewModel.Project;
 using CV.API.ViewModel.SkillViewModels.Skill;
 using CV.API.ViewModel.SkillViewModels.SkillGroup;
 using CV.API.ViewModel.SkillViewModels.SkillLevel;
 using CV.BLL.Models;
+using CV.BLL.Models.ForeignLanguage;
 using CV.BLL.Models.Skill;
 
 namespace CV.API.Mappers
@@ -37,6 +43,31 @@ namespace CV.API.Mappers
             CreateMap<AddSkillLevelViewModel, SkillLevelModel>().ReverseMap();
             CreateMap<ShortSkillLevelViewModel, SkillLevelModel>().ReverseMap();
             CreateMap<UpdateSkillLevelViewModel, SkillLevelModel>().ReverseMap();
+
+            CreateMap<ForeignLanguageViewModel, ForeignLanguageModel>().ReverseMap();
+            CreateMap<AddForeignLanguageViewModel, ForeignLanguageModel>().ReverseMap();
+            CreateMap<ShortForeignLanguageViewModel, ForeignLanguageModel>().ReverseMap();
+            CreateMap<UpdateForeignLanguageViewModel, ForeignLanguageModel>().ReverseMap();
+
+            CreateMap<LanguageEveryDayTopicViewModel, LanguageEverydayTopicModel>().ReverseMap();
+            CreateMap<AddLanguageEveryDayTopicViewModel, LanguageEverydayTopicModel>().ReverseMap();
+            CreateMap<ShortLanguageEveryDayTopicViewModel, LanguageEverydayTopicModel>().ReverseMap();
+            CreateMap<UpdateLanguageEveryDayTopicViewModel, LanguageEverydayTopicModel>().ReverseMap();
+
+            CreateMap<LanguageLevelViewModel, LanguageLevelModel>().ReverseMap();
+            CreateMap<AddLanguageLevelViewModel, LanguageLevelModel>().ReverseMap();
+            CreateMap<ShortLanguageLevelViewModel, LanguageLevelModel>().ReverseMap();
+            CreateMap<UpdateLanguageLevelViewModel, LanguageLevelModel>().ReverseMap();
+
+            CreateMap<LanguageProfessionalTopicViewModel, LanguageProfessionalTopicModel>().ReverseMap();
+            CreateMap<AddLanguageProfessionalTopicViewModel, LanguageProfessionalTopicModel>().ReverseMap();
+            CreateMap<ShortLanguageProfessionalTopicViewModel, LanguageProfessionalTopicModel>().ReverseMap();
+            CreateMap<UpdateLanguageProfessionalTopicViewModel, LanguageProfessionalTopicModel>().ReverseMap();
+
+            CreateMap<EmployeeProjectViewModel, EmployeeProjectModel>().ReverseMap();
+            CreateMap<AddEmployeeProjectViewModel, EmployeeProjectModel>().ReverseMap();
+            CreateMap<ShortEmployeeProjectViewModel, EmployeeProjectModel>().ReverseMap();
+            CreateMap<UpdateEmployeeProjectViewModel, EmployeeProjectModel>().ReverseMap();
         }
     }
 }
